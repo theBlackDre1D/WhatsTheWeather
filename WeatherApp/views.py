@@ -43,8 +43,3 @@ def index(request):
         # forecastDict = {'forecast':forecastList}
         dict_for_show = {'city': cityForm}
         return render(request, 'WeatherApp/index.html', dict_for_show)
-
-
-def forecast(request):
-    dictForShow = {'context': context}
-    return (request, 'WeatherApp/skuska.html', dictForShow)
