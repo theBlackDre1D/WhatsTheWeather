@@ -4,28 +4,30 @@ body{
 .forecast_table {
     margin: auto;
     width: 50%;
-
+    border-color: azure;
     color: whitesmoke;
     font-size: 20px;
     list-style-type: none;
 
 }
 
-.input_field{
+#input_field{
     width: 100%;
-    padding: 12px 20px;
+    padding: 120px 800px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    box-sizing: border-box;
+    /*border: 1px solid #ccc;*/
+    /*border-radius: 20px;*/
+    /*box-sizing: border-box;*/
 }
 
-.container {
-    background-color: darkviolet;
+.search_container {
+    /*background-color: darkviolet;*/
     margin-left: auto;
     margin-right: auto;
-    height: 300px;
+    height: 500px;
+    width: 100%;
+    background: url("./images/mountains.jpg") center;
 }
 
 .error {
@@ -54,8 +56,9 @@ ul {
     list-style-type: none;
 }
 
-input[type=search] {
-    width: 500px;
-
-    -webkit-appearance: none;
+#search_button {
+    width: 70px;
+    height: 50px;
+    background-color: aqua;
+    border: aqua;
 }

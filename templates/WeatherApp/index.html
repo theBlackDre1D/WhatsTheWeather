@@ -8,14 +8,14 @@
 {#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">#}
   </head>
   <body>
-  <h1>What's the weather?</h1>
-  <p class="error">{{ error }}</p>
-    <div class="container">
-      <form method="POST" class="input_field">
+    <div class="search_container">
+        <h1>What's the weather?</h1>
+        <p class="error">{{ error }}</p>
+        <form method="POST" id="input_field">
         {{ city.as_p }}
         {% csrf_token %}
-        <input type="submit" class="btn btn-primary" value="Submit">
-      </form>
+        <input type="submit" class="btn btn-primary" value="Submit" id="search_button">
+        </form>
     </div>
 
     <div class="forecast_table">
