@@ -1,7 +1,7 @@
 body{
     background-color: rgb(66,73,73)
 }
-.forecast_table {
+.current_weather {
     margin: auto;
     width: 50%;
     border-color: azure;
@@ -61,4 +61,12 @@ ul {
     height: 50px;
     background-color: aqua;
     border: aqua;
+}
+#id_cityName {
+    width: 500px;
+    height: 35px;
+    border-radius: 45px;
+    font-size: 20px;
+    font-family: "Courier New";
+
 }
