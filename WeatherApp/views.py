@@ -2,7 +2,7 @@ import json
 
 import requests
 from django.shortcuts import render
-from apixu.client import ApixuClient, ApixuException
+#from apixu.client import ApixuClient, ApixuException
 
 from . import forms, models
 
