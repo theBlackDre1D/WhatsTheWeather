@@ -2,16 +2,15 @@ import json
 
 import requests
 from django.shortcuts import render
-from apixu.client import ApixuClient, ApixuException
 
 from . import forms, models
 
 def index(request):
     city_form = forms.SearchForm()
     found_city = ''
-    respond = None
-    api_key = '02e9a702a6f14213bc9125617170112'
-    client = ApixuClient(api_key)
+    # respond = None
+    # api_key = '02e9a702a6f14213bc9125617170112'
+    # client = ApixuClient(api_key)
     day_count = '7'
 
     if request.method == "POST":
@@ -29,7 +28,7 @@ def index(request):
             API_response_days = requests.get('http://api.apixu.com/v1/forecast.json?key=02e9a702a6f14213bc9125617170112&q=' + found_city + '&days=' + day_count)
             if API_response_current.status_code == 200:  # APIREsponse.ok()
                 # respond = API_response_current.text
-                print(API_response_current.json())
+                #print(API_response_current.json())
                 respondJSON = json.loads(API_response_current.text)
                 description = respondJSON['weather'][0]['main']
                 temperature = respondJSON['main']['temp']
@@ -43,6 +42,8 @@ def index(request):
                     #TODO: Check if value in for loop is correct with final count of days for show
                     for index in range(int(day_count)): #There is value of count days for forecast
                         day_temp = respond_days_JSON['forecast']['forecastday'][index]['day']['avgtemp_c']
+                        day_picture_url = 'http:' + respond_days_JSON['forecast']['forecastday'][index]['day']['condition']['icon']
+                        forecast_dict['picture{}'.format(index)] = day_picture_url
                         forecast_dict['day{}'.format(index)] = day_temp
 
                 return render(request, 'WeatherApp/index.html', forecast_dict)

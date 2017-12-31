@@ -14,22 +14,40 @@
         <form method="POST" id="input_field">
         {{ city.as_p }}
         {% csrf_token %}
-        <input type="submit" class="btn btn-primary" value="Submit" id="search_button">
+        <input type="submit" value="Submit" id="search_button">
         </form>
     </div>
 
     <div class="current_weather">
         <ul>
-         <li> <p>Temperature (C°): </p>{{ temperature }}</li>
-          <li> <p>Description of weather: </p>{{ description }}</li>
-         <li> <p>Pressure (hPa): </p>{{ pressure }}</li>
-         <li> <p>Speed of wind (m/s): </p>{{ wind }}</li>
+         <li> <p class="current_p">Temperature (C°): </p>{{ temperature }}</li>
+          <li> <p class="current_p">Description of weather: </p>{{ description }}</li>
+         <li> <p class="current_p">Pressure (hPa): </p>{{ pressure }}</li>
+         <li> <p class="current_p">Speed of wind (m/s): </p>{{ wind }}</li>
         </ul>
     </div>
 
   <div>
-      <table>
-
+      <h1>7 days forecast</h1>
+      <table class="multiple_days_forecast" style="width: 100%">
+        <tr>
+            <th> {{ day0 }}</th>
+            <th> {{ day1 }}</th>
+            <th> {{ day2 }}</th>
+            <th> {{ day3 }}</th>
+            <th> {{ day4 }}</th>
+            <th> {{ day5 }}</th>
+            <th> {{ day6 }}</th>
+        </tr>
+          <tr>
+              <th> <img src="{{ picture0 }}"> </th>
+              <th> <img src="{{ picture1 }}"> </th>
+              <th> <img src="{{ picture2 }}"> </th>>
+              <th> <img src="{{ picture3 }}"> </th>
+              <th> <img src="{{ picture4 }}"> </th>
+              <th> <img src="{{ picture5 }}"> </th>
+              <th> <img src="{{ picture6 }}"> </th>
+          </tr>
       </table>
   </div>
 
