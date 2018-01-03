@@ -5,13 +5,14 @@ from django.shortcuts import render
 
 from . import forms, models
 
+
 def index(request):
     city_form = forms.SearchForm()
     found_city = ''
     # respond = None
     # api_key = '02e9a702a6f14213bc9125617170112'
     # client = ApixuClient(api_key)
-    day_count = '7'
+    day_count = '8'
 
     if request.method == "POST":
 
@@ -24,7 +25,6 @@ def index(request):
             API_response_current = requests.get(
                 'http://api.openweathermap.org/data/2.5/weather?q=' + found_city +
                 '&units=metric&APPID=86b95a6bdcdc3337e011d61ce6f359a3')
-
             API_response_days = requests.get('http://api.apixu.com/v1/forecast.json?key=02e9a702a6f14213bc9125617170112&q=' + found_city + '&days=' + day_count)
             if API_response_current.status_code == 200:  # APIREsponse.ok()
                 # respond = API_response_current.text
@@ -40,11 +40,26 @@ def index(request):
                     print(API_response_days.json())
                     respond_days_JSON = json.loads(API_response_days.text)
                     #TODO: Check if value in for loop is correct with final count of days for show
-                    for index in range(int(day_count)): #There is value of count days for forecast
-                        day_temp = respond_days_JSON['forecast']['forecastday'][index]['day']['avgtemp_c']
+                    for index in range(1, int(day_count)): #There is value of count days for forecast
                         day_picture_url = 'http:' + respond_days_JSON['forecast']['forecastday'][index]['day']['condition']['icon']
                         forecast_dict['picture{}'.format(index)] = day_picture_url
+
+                        day_temp = respond_days_JSON['forecast']['forecastday'][index]['day']['avgtemp_c']
                         forecast_dict['day{}'.format(index)] = day_temp
+
+                    for index in range(24):
+                        temp_time_string = respond_days_JSON['forecast']['forecastday'][0]['hour'][index]['time']
+                        temp_time = temp_time_string[12]
+                        # i = 0
+                        # if int(temp_time) % 2 == 0:
+                        hour_forecast_temperature = respond_days_JSON['forecast']['forecastday'][0]['hour'][index]['temp_c']
+                        forecast_dict['hour_temp{}'.format(index)] = hour_forecast_temperature
+                        hour_forecast_real_feel = respond_days_JSON['forecast']['forecastday'][0]['hour'][index]['feelslike_c']
+                        forecast_dict['hour_real_feel{}'.format(index)] = hour_forecast_real_feel
+                        hour_forecast_icon = 'http:' + respond_days_JSON['forecast']['forecastday'][0]['hour'][index]['condition']['icon']
+                        forecast_dict['hour_icon{}'.format(index)] = hour_forecast_icon
+                            # i += 1
+
 
                 return render(request, 'WeatherApp/index.html', forecast_dict)
 

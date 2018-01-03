@@ -27,7 +27,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     height: 500px;
-    width: 100%;
+    width: 110%;
     background: url("./images/mountains.jpg") center;
 }
 
@@ -62,7 +62,7 @@ ul {
     height: 50px;
     background-color: aqua;
     border: aqua;
-    margin-left: 888px;
+    margin-left: 757px;
     border-radius: 13px;
     font-weight: bold;
     font-size: large;
@@ -90,7 +90,7 @@ table, th, td {
 }
 
 p {
-    padding-left: 650px;
+    padding-left: 505px;
 }
 
 .current_p {
