@@ -40,6 +40,7 @@ def index(request):
                     print(API_response_days.json())
                     respond_days_JSON = json.loads(API_response_days.text)
                     #TODO: Check if value in for loop is correct with final count of days for show
+                    #TODO: Change API for forecast for example to Dark Sky API https://darksky.net/dev/docs
                     # for index in range(1, int(day_count)): #There is value of count days for forecast
                     #     day_picture_url = 'http:' + respond_days_JSON['forecast']['forecastday'][index]['day']['condition']['icon']
                     #     forecast_dict['picture{}'.format(index)] = day_picture_url
