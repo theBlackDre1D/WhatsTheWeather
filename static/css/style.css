@@ -96,3 +96,12 @@ p {
 .current_p {
     padding-left: 0px;
 }
+
+.iconsAutor {
+    color: aliceblue;
+}
+
+.images {
+    width: 64pt;
+    height: 54pt;
+}

@@ -28,7 +28,7 @@
     </div>
 
     <div>
-        <h1>Forecast for today</h1>
+        <h1> 24 hour forecast </h1>
         <table>
             <tr>
                 <th>Time</th>
@@ -140,6 +140,104 @@
                 <th> {{ hour_clouds22 }} %</th>
                 <th> {{ hour_clouds23 }} %</th>
             </tr>
+
+            <tr>
+                <th> Icon </th>
+                {% with 'images/'|add:hour_icon0|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon1|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon2|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon3|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon4|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon5|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon6|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon7|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon8|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon9|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon10|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon11|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon12|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon13|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon14|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon15|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon16|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon17|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon18|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon19|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon20|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon21|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+
+                {% with 'images/'|add:hour_icon22|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+                {% with 'images/'|add:hour_icon23|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                {% endwith %}
+            </tr>
         </table>
 
     </div>
@@ -166,7 +264,6 @@
             <th> {{ day_MAX4 }} -> {{ day_MIN4 }}</th>
             <th> {{ day_MAX5 }} -> {{ day_MIN5 }}</th>
             <th> {{ day_MAX6 }} -> {{ day_MIN6 }}</th>
-
         </tr>
           <tr>
               <th>Clouds</th>
@@ -177,11 +274,47 @@
               <th> {{ day_clouds4 }}% </th>
               <th> {{ day_clouds5 }}% </th>
               <th> {{ day_clouds6 }}% </th>
+          </tr>
+
+          <tr>
+              <th>Icon</th>
+              {% with 'images/'|add:day_icon0|add:'.png' as image_static %}
+                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+              {% endwith %}
+
+              {% with 'images/'|add:day_icon1|add:'.png' as image_static %}
+                        <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                  {% endwith %}
+
+              {% with 'images/'|add:day_icon2|add:'.png' as image_static %}
+                        <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                  {% endwith %}
+
+              {% with 'images/'|add:day_icon3|add:'.png' as image_static %}
+                        <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                  {% endwith %}
+
+              {% with 'images/'|add:day_icon4|add:'.png' as image_static %}
+                        <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                  {% endwith %}
+
+              {% with 'images/'|add:day_icon5|add:'.png' as image_static %}
+                        <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                  {% endwith %}
+
+              {% with 'images/'|add:day_icon6|add:'.png' as image_static %}
+                        <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                  {% endwith %}
 
           </tr>
       </table>
     </div>
 
+  <div>
+      <p style="color: azure">
+          Icons made by <a href="http://www.freepik.com" title="Freepik" style="color: aqua">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon" style="color: aqua">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" style="color: aqua">CC 3.0 BY</a>
+      </p>
+  </div>
 
   </body>
 </html>
