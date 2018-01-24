@@ -2,12 +2,16 @@ import json
 
 import requests
 from django.shortcuts import render
+from geopy.geocoders import Nominatim
+from forecastiopy import *
+from datetime import date, timedelta
 
 from . import forms, models
 
 
 def index(request):
     city_form = forms.SearchForm()
+    DarkSkyAPIKey = '65a79529abb596fddb1eca28b2d1dd8a'
     found_city = ''
     # respond = None
     # api_key = '02e9a702a6f14213bc9125617170112'
@@ -25,7 +29,27 @@ def index(request):
             API_response_current = requests.get(
                 'http://api.openweathermap.org/data/2.5/weather?q=' + found_city +
                 '&units=metric&APPID=86b95a6bdcdc3337e011d61ce6f359a3')
-            API_response_days = requests.get('http://api.apixu.com/v1/forecast.json?key=02e9a702a6f14213bc9125617170112&q=' + found_city + '&days=' + day_count)
+
+            # Finding latitude and longitude
+            geolocator = Nominatim()
+            location = geolocator.geocode(found_city)
+            print((location.latitude, location.longitude))
+
+            DESIRED_LOCATION = [location.latitude, location.longitude]
+            # forecast = ForecastIO.ForecastIO(DarkSkyAPIKey,
+            #                                  units=ForecastIO.ForecastIO.UNITS_AUTO,
+            #                                  lang=ForecastIO.ForecastIO.LANG_ENGLISH,
+            #                                  latitude=DESIRED_LOCATION[0], longitude=DESIRED_LOCATION[1])
+            # if forecast.has_hourly() is True:
+            #     hourly = ForecastIO.ForecastIO(forecast)
+            #     print('Hourly')
+            #     print('Summary:', hourly.summary)
+            #     print('Icon:', hourly.icon)
+            #
+            #     for hourForecast in range(0, 23):
+            #         print("Daco sa spravilo")
+
+            API_response_days = requests.get('https://api.darksky.net/forecast/' + DarkSkyAPIKey + '/' + str(location.latitude) + ',' + str(location.longitude) + '?units=si')
             if API_response_current.status_code == 200:  # APIREsponse.ok()
                 # respond = API_response_current.text
                 #print(API_response_current.json())
@@ -37,29 +61,32 @@ def index(request):
                 forecast_dict = {'description': description, 'temperature': temperature, 'pressure': pressure, 'wind': wind, 'city': city_form}
 
                 if API_response_days.status_code == 200:
-                    print(API_response_days.json())
                     respond_days_JSON = json.loads(API_response_days.text)
-                    #TODO: Check if value in for loop is correct with final count of days for show
-                    #TODO: Change API for forecast for example to Dark Sky API https://darksky.net/dev/docs
-                    # for index in range(1, int(day_count)): #There is value of count days for forecast
-                    #     day_picture_url = 'http:' + respond_days_JSON['forecast']['forecastday'][index]['day']['condition']['icon']
-                    #     forecast_dict['picture{}'.format(index)] = day_picture_url
-                    #
-                    #     day_temp = respond_days_JSON['forecast']['forecastday'][index]['day']['avgtemp_c']
-                    #     forecast_dict['day{}'.format(index)] = day_temp
-                    #
-                    # for index in range(24):
-                    #     temp_time_string = respond_days_JSON['forecast']['forecastday'][0]['hour'][index]['time']
-                    #     temp_time = temp_time_string[12]
-                    #     # i = 0
-                    #     # if int(temp_time) % 2 == 0:
-                    #     hour_forecast_temperature = respond_days_JSON['forecast']['forecastday'][0]['hour'][index]['temp_c']
-                    #     forecast_dict['hour_temp{}'.format(index)] = hour_forecast_temperature
-                    #     hour_forecast_real_feel = respond_days_JSON['forecast']['forecastday'][0]['hour'][index]['feelslike_c']
-                    #     forecast_dict['hour_real_feel{}'.format(index)] = hour_forecast_real_feel
-                    #     hour_forecast_icon = 'http:' + respond_days_JSON['forecast']['forecastday'][0]['hour'][index]['condition']['icon']
-                    #     forecast_dict['hour_icon{}'.format(index)] = hour_forecast_icon
-                    #         # i += 1
+                    print(respond_days_JSON)
+
+                    # ---7-DAYS FORECAST---
+                    weekday = date.today()
+                    for index in range(0, 7):
+                        day_in_week = date.strftime(weekday, '%a')
+                        day_tempMAX = respond_days_JSON['daily']['data'][index]['temperatureHigh']
+                        day_tempMIN = respond_days_JSON['daily']['data'][index]['temperatureLow']
+                        day_clouds = respond_days_JSON['daily']['data'][index]['cloudCover']
+                        forecast_dict['day_MAX{}'.format(index)] = day_tempMAX
+                        forecast_dict['day_MIN{}'.format(index)] = day_tempMIN
+                        forecast_dict['day_clouds{}'.format(index)] = day_clouds
+                        forecast_dict['day_name{}'.format(index)] = day_in_week
+                        weekday += timedelta(days=1)
+
+                    # ---HOURLY---
+                    for index in range(0, 24):
+                        hour_temp = respond_days_JSON['hourly']['data'][index]['temperature']
+                        hour_clouds = respond_days_JSON['hourly']['data'][index]['cloudCover']
+                        hour_wind_speed = respond_days_JSON['hourly']['data'][index]['windSpeed']
+                        forecast_dict['hour_temp{}'.format(index)] = hour_temp
+                        forecast_dict['hour_clouds{}'.format(index)] = hour_clouds
+                        forecast_dict['hour_wind_speed{}'.format(index)] = hour_wind_speed
+
+
 
 
                 return render(request, 'WeatherApp/index.html', forecast_dict)
