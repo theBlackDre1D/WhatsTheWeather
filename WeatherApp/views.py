@@ -84,6 +84,16 @@ def index(request):
                         weekday += timedelta(days=1)
 
                     # ---HOURLY---
+                    forecast = []
+                    for hour in respond_days_JSON['hourly']['data']:
+                        forecast.append(
+                            {
+                                'hour_temp': hour['temperature'],
+                                'hour_clouds': format(hour['cloudCover'] * 100, '.2f'),
+                                'hour_wind_speed': hour['windSpeed'],
+                                'hour_icon': hour['icon']
+                            }
+                        )
                     for index in range(0, 24):
                         hour_temp = respond_days_JSON['hourly']['data'][index]['temperature']
                         hour_clouds = respond_days_JSON['hourly']['data'][index]['cloudCover']
@@ -94,6 +104,7 @@ def index(request):
                         forecast_dict['hour_clouds{}'.format(index)] = integer_clouds
                         forecast_dict['hour_wind_speed{}'.format(index)] = hour_wind_speed
                         forecast_dict['hour_icon{}'.format(index)] = hour_icon
+                    forecast_dict['forecast'] = forecast
 
                 return render(request, 'WeatherApp/index.html', forecast_dict)
 

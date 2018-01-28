@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <title>Whats The Weather?</title>
       <link rel="stylesheet" href="{% static "css/style.css" %}">
-{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">#}
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" #}
+{#          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">#}
   </head>
   <body>
     <div class="search_container">
@@ -59,184 +60,32 @@
             </tr>
             <tr>
                 <th>Temperature (C°)</th>
-                <th>  {{ hour_temp0 }}  </th>
-                <th>  {{ hour_temp1 }}  </th>
-                <th>  {{ hour_temp2 }}  </th>
-                <th>  {{ hour_temp3 }}  </th>
-                <th>  {{ hour_temp4 }}  </th>
-                <th>  {{ hour_temp5 }}  </th>
-                <th>  {{ hour_temp6 }}  </th>
-                <th>  {{ hour_temp7 }}  </th>
-                <th>  {{ hour_temp8 }}  </th>
-                <th>  {{ hour_temp9 }}  </th>
-                <th>  {{ hour_temp10 }}  </th>
-                <th>  {{ hour_temp11 }}  </th>
-                <th>  {{ hour_temp12 }}  </th>
-                <th>  {{ hour_temp13 }}  </th>
-                <th>  {{ hour_temp14 }}  </th>
-                <th>  {{ hour_temp15 }}  </th>
-                <th>  {{ hour_temp16 }}  </th>
-                <th>  {{ hour_temp17 }}  </th>
-                <th>  {{ hour_temp18 }}  </th>
-                <th>  {{ hour_temp19 }}  </th>
-                <th>  {{ hour_temp20 }}  </th>
-                <th>  {{ hour_temp21 }}  </th>
-                <th>  {{ hour_temp22 }}  </th>
-                <th>  {{ hour_temp23 }}  </th>
+                {% for hour in forecast %}
+                    <th>{{ hour.hour_temp }}</th>
+                {% endfor %}
             </tr>
 
             <tr>
                 <th>Wind speed km/h</th>
-                <th>{{ hour_wind_speed0 }} km/h</th>
-                <th>{{ hour_wind_speed1 }} km/h</th>
-                <th>{{ hour_wind_speed2 }} km/h</th>
-                <th>{{ hour_wind_speed3 }} km/h</th>
-                <th>{{ hour_wind_speed4 }} km/h</th>
-                <th>{{ hour_wind_speed5 }} km/h</th>
-                <th>{{ hour_wind_speed6 }} km/h</th>
-                <th>{{ hour_wind_speed7 }} km/h</th>
-                <th>{{ hour_wind_speed8 }} km/h</th>
-                <th>{{ hour_wind_speed9 }} km/h</th>
-                <th>{{ hour_wind_speed10 }} km/h</th>
-                <th>{{ hour_wind_speed11 }} km/h</th>
-                <th>{{ hour_wind_speed12 }} km/h</th>
-                <th>{{ hour_wind_speed13 }} km/h</th>
-                <th>{{ hour_wind_speed14 }} km/h</th>
-                <th>{{ hour_wind_speed15 }} km/h</th>
-                <th>{{ hour_wind_speed16 }} km/h</th>
-                <th>{{ hour_wind_speed17 }} km/h</th>
-                <th>{{ hour_wind_speed18 }} km/h</th>
-                <th>{{ hour_wind_speed19 }} km/h</th>
-                <th>{{ hour_wind_speed20 }} km/h</th>
-                <th>{{ hour_wind_speed21 }} km/h</th>
-                <th>{{ hour_wind_speed22 }} km/h</th>
-                <th>{{ hour_wind_speed23 }} km/h</th>
+                {% for hour in forecast %}
+                    <th>{{ hour.hour_wind_speed }}</th>
+                {% endfor %}
             </tr>
 
             <tr>
                 <th>Clouds</th>
-                <th> {{ hour_clouds0 }} %</th>
-                <th> {{ hour_clouds1 }} %</th>
-                <th> {{ hour_clouds2 }} %</th>
-                <th> {{ hour_clouds3 }} %</th>
-                <th> {{ hour_clouds4 }} %</th>
-                <th> {{ hour_clouds5 }} %</th>
-                <th> {{ hour_clouds6 }} %</th>
-                <th> {{ hour_clouds7 }} %</th>
-                <th> {{ hour_clouds8 }} %</th>
-                <th> {{ hour_clouds9 }} %</th>
-                <th> {{ hour_clouds10 }} %</th>
-                <th> {{ hour_clouds11 }} %</th>
-                <th> {{ hour_clouds12 }} %</th>
-                <th> {{ hour_clouds13 }} %</th>
-                <th> {{ hour_clouds14 }} %</th>
-                <th> {{ hour_clouds15 }} %</th>
-                <th> {{ hour_clouds16 }} %</th>
-                <th> {{ hour_clouds17 }} %</th>
-                <th> {{ hour_clouds18 }} %</th>
-                <th> {{ hour_clouds19 }} %</th>
-                <th> {{ hour_clouds20 }} %</th>
-                <th> {{ hour_clouds21 }} %</th>
-                <th> {{ hour_clouds22 }} %</th>
-                <th> {{ hour_clouds23 }} %</th>
+                {% for hour in forecast %}
+                    <th>{{ hour.hour_clouds }}</th>
+                {% endfor %}
             </tr>
 
             <tr>
                 <th> Icon </th>
-                {% with 'images/'|add:hour_icon0|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon1|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon2|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon3|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon4|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon5|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon6|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon7|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon8|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon9|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon10|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon11|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon12|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon13|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon14|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon15|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon16|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon17|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon18|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon19|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon20|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon21|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-
-                {% with 'images/'|add:hour_icon22|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
-                {% with 'images/'|add:hour_icon23|add:'.png' as image_static %}
-                    <th> <img src="{% static image_static %}" height="64" width="64"> </th>
-                {% endwith %}
+                {% for hour in forecast %}
+                    {% with 'images/'|add:hour.hour_icon|add:'.png' as image_static %}
+                        <th> <img src="{% static image_static %}" height="64" width="64"> </th>
+                    {% endwith %}
+                {% endfor %}
             </tr>
         </table>
 
@@ -312,7 +161,9 @@
 
   <div>
       <p style="color: azure">
-          Icons made by <a href="http://www.freepik.com" title="Freepik" style="color: aqua">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon" style="color: aqua">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" style="color: aqua">CC 3.0 BY</a>
+          Icons made by <a href="http://www.freepik.com" title="Freepik" style="color: aqua">Freepik</a> from
+          <a href="https://www.flaticon.com/" title="Flaticon" style="color: aqua">www.flaticon.com</a> is licensed by
+          <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" style="color: aqua">CC 3.0 BY</a>
       </p>
   </div>
 
